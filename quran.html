@@ -76,10 +76,10 @@
 <!-- ============ VIEW: BROWSE ============ -->
 <div id="view-browse">
   <div class="section-header">
-    <a href="index.html" class="sec-back">← Accueil</a>
+    <a href="index.html" class="sec-back" data-i18n="back_home">← Accueil</a>
     <div class="sec-title-area">
       <div class="sec-title">القرآن الكريم</div>
-      <div class="sec-subtitle">Le Noble Coran</div>
+      <div class="sec-subtitle" data-i18n="noble_quran">Le Noble Coran</div>
     </div>
     <div class="sec-actions">
       <button onclick="openSettings()" title="Paramètres">⚙️</button>
@@ -91,30 +91,30 @@
     <div class="last-read-card" id="last-read-card">
       <span class="last-read-icon">📌</span>
       <div class="last-read-info">
-        <div class="last-read-label">Reprendre la lecture</div>
+        <div class="last-read-label" data-i18n="resume_reading">Reprendre la lecture</div>
         <div class="last-read-detail" id="last-read-detail"></div>
         <div class="last-read-sub" id="last-read-sub"></div>
       </div>
-      <button class="last-read-go">Continuer →</button>
+      <button class="last-read-go" data-i18n="continue">Continuer →</button>
     </div>
   </div>
 
   <div class="quran-progress">
-    <span class="progress-label">Progression</span>
+    <span class="progress-label" data-i18n="progression">Progression</span>
     <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressFill"></div></div>
     <span class="progress-count" id="progressCount">0/30</span>
   </div>
 
   <div class="quran-tabs">
-    <button class="tab-btn active" id="tab-juz" onclick="switchTab('juz')">📖 Par Juz</button>
-    <button class="tab-btn" id="tab-surah" onclick="switchTab('surah')">📋 Par Sourate</button>
+    <button class="tab-btn active" id="tab-juz" onclick="switchTab('juz')" data-i18n="by_juz">📖 Par Juz</button>
+    <button class="tab-btn" id="tab-surah" onclick="switchTab('surah')" data-i18n="by_surah">📋 Par Sourate</button>
   </div>
 
   <div class="grid-wrap" id="juz-section"><div class="grid" id="juz-grid"></div></div>
   <div class="surah-wrap" id="surah-section">
     <div class="search-wrap">
       <span class="search-icon">🔍</span>
-      <input class="search-input" type="text" placeholder="Rechercher une sourate..." oninput="filterSurahs(this.value)"/>
+      <input class="search-input" type="text" placeholder="Rechercher une sourate..." data-i18n="search_surah" oninput="filterSurahs(this.value)"/>
     </div>
     <div id="surah-list"></div>
   </div>
@@ -123,7 +123,7 @@
 <!-- ============ VIEW: READER ============ -->
 <div id="view-reader" style="display:none;">
   <div class="section-header">
-    <button class="sec-back" onclick="goBack()">← Retour</button>
+    <button class="sec-back" onclick="goBack()" data-i18n="back_return">← Retour</button>
     <div class="sec-title-area">
       <div class="sec-title" id="reader-title"></div>
       <div class="sec-subtitle" id="reader-subtitle"></div>
@@ -136,7 +136,7 @@
 
   <!-- Font size control -->
   <div class="font-control">
-    <span class="font-label">Taille</span>
+    <span class="font-label" data-i18n="font_size">Taille</span>
     <button class="font-btn" onclick="changeFontSize(-1)">A-</button>
     <span class="font-size-display" id="font-size-display">3</span>
     <button class="font-btn" onclick="changeFontSize(1)">A+</button>
@@ -170,25 +170,25 @@
 
 <!-- ============ SHARE PANEL ============ -->
 <div class="share-overlay" id="share-overlay" onclick="if(event.target===this)closeShare()">
-  <div class="share-panel">
-    <div class="share-handle"></div>
-    <div class="share-title">📤 Partager ce verset</div>
+    <div class="share-panel">
+      <div class="share-handle"></div>
+      <div class="share-title" data-i18n="share_verse">📤 Partager ce verset</div>
     <div class="share-verse-preview" id="share-preview"></div>
     <div class="share-buttons">
       <button class="share-btn whatsapp" onclick="shareWhatsApp()">📱 WhatsApp</button>
       <button class="share-btn telegram" onclick="shareTelegram()">✈️ Telegram</button>
       <button class="share-btn twitter" onclick="shareTwitter()">🐦 Twitter</button>
       <button class="share-btn copy" onclick="shareCopy()">📋 Copier</button>
-    </div>
-    <button class="share-close" onclick="closeShare()">Fermer</button>
+      </div>
+      <button class="share-close" onclick="closeShare()" data-i18n="close">Fermer</button>
   </div>
 </div>
 
 <!-- ============ SETTINGS ============ -->
-<div class="settings-overlay" id="settings-overlay" onclick="if(event.target===this)closeSettings()">
+  <div class="settings-overlay" id="settings-overlay" onclick="if(event.target===this)closeSettings()">
   <div class="settings-panel">
     <div class="settings-handle"></div>
-    <div class="settings-title">⚙️ Paramètres</div>
+    <div class="settings-title" data-i18n="settings">⚙️ Paramètres</div>
     <div class="setting-group">
       <label class="setting-label">🎙️ Récitateur</label>
       <select class="setting-select" id="select-reciter" onchange="changeReciter(this.value)">
@@ -211,7 +211,7 @@
         <option value="en.pickthall">🇬🇧 English — Pickthall</option>
       </select>
     </div>
-    <button class="settings-close" onclick="closeSettings()">✓ Fermer</button>
+    <button class="settings-close" onclick="closeSettings()" data-i18n="close">✓ Fermer</button>
   </div>
 </div>
 
@@ -344,10 +344,10 @@ function shareTwitter(){
 function shareCopy(){
   var text=getShareText();
   if(navigator.clipboard){
-    navigator.clipboard.writeText(text).then(function(){showToast('📋 Verset copié !');});
+    navigator.clipboard.writeText(text).then(function(){showToast(t('share_copied'));});
   }else{
     var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
-    showToast('📋 Verset copié !');
+    showToast(t('share_copied'));
   }
   closeShare();
 }
@@ -364,7 +364,7 @@ function goBack(){audio.pause();S.playing=false;updatePlayBtn();document.getElem
    ================================================================ */
 function saveDone(){localStorage.setItem('q_done',JSON.stringify(S.done));updateProgress();}
 function updateProgress(){var n=S.done.length;document.getElementById('progressFill').style.width=(n/30*100)+'%';document.getElementById('progressCount').textContent=n+'/30';}
-function toggleDone(num,e){e.stopPropagation();var i=S.done.indexOf(num);if(i===-1){S.done.push(num);showToast('✓ Juz '+num+' marqué lu');}else S.done.splice(i,1);saveDone();renderJuzGrid();}
+function toggleDone(num,e){e.stopPropagation();var i=S.done.indexOf(num);if(i===-1){S.done.push(num);showToast('✓ Juz '+num);}else S.done.splice(i,1);saveDone();renderJuzGrid();}
 
 /* ================================================================
    API
@@ -435,7 +435,7 @@ function renderJuzGrid(){
   for(var i=1;i<=30;i++){(function(num){
     var done=S.done.includes(num);var card=document.createElement('div');
     card.className='juz-card'+(done?' completed':'');card.style.animationDelay=Math.min(num,15)*0.03+'s';
-    card.innerHTML='<span class="juz-arabic">'+JUZ_AR[num-1].split(' ').slice(0,2).join(' ')+'</span><span class="juz-label">Juz</span><span class="juz-number">'+String(num).padStart(2,'0')+'</span><span class="listen-badge">📖 Lire</span><button class="mark-btn" onclick="toggleDone('+num+',event)">'+(done?'✓ Terminé':'+ Lu')+'</button>';
+    card.innerHTML='<span class="juz-arabic">'+JUZ_AR[num-1].split(' ').slice(0,2).join(' ')+'</span><span class="juz-label">Juz</span><span class="juz-number">'+String(num).padStart(2,'0')+'</span><span class="listen-badge">'+t('read')+'</span><button class="mark-btn" onclick="toggleDone('+num+',event)">'+(done?t('marked_read'):t('mark_read'))+'</button>';
     card.addEventListener('click',function(){openJuz(num);});grid.appendChild(card);
   })(i);}
   updateProgress();
@@ -560,6 +560,32 @@ function checkParams(){var p=new URLSearchParams(window.location.search);var j=p
   loadLastRead();
   checkParams();
 })();
+
+/* ================================================================
+   LANG: Système de langue FR/Wolof
+   ================================================================ */
+function onLangChanged() {
+  /* Rafraîchir les éléments dynamiques */
+  
+  /* Juz grid — re-render pour traduire les boutons */
+  if (document.getElementById('juz-grid').children.length > 0) {
+    renderJuzGrid();
+  }
+  
+  /* Surah list — forcer le re-render */
+  if (surahRendered) {
+    surahRendered = false;
+    var tab = document.getElementById('tab-surah');
+    if (tab && tab.classList.contains('active')) {
+      renderSurahList();
+    }
+  }
+}
+
+/* Appliquer la langue au chargement */
+if (typeof refreshLang === 'function') {
+  refreshLang();
+}
 </script>
 </body>
 </html>
